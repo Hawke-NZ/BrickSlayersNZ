@@ -1,0 +1,4 @@
+{
+  "_help": "OPTIONAL manual gallery. Only used when no Instagram feed URL is set in js/config.js (or the feed is down). Add posts like: { \"image\": \"img/gallery/wall1.jpg\", \"caption\": \"Boundary wall, Papakura\", \"permalink\": \"https://www.instagram.com/p/XXXXXXXX/\", \"timestamp\": \"2026-09-01\" }",
+  "posts": []
+}
