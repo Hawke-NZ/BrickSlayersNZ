@@ -222,10 +222,10 @@
     }
     J.onFrame(function (dt, scrollD) {
       if (!vis || !gw) return;
-      x += dir * speed * dt - scrollD * 0.2;
+      x += dir * speed * dt - scrollD * 0.5;
       if (x <= -gw) x += gw;
       if (x > 0) x -= gw;
-      var sk = Math.max(-3, Math.min(3, J.scrollV * -0.14));
+      var sk = Math.max(-10, Math.min(10, J.scrollV * -0.45));
       track.style.transform = 'translate3d(' + x.toFixed(1) + 'px,0,0) skewX(' + sk.toFixed(2) + 'deg)';
     });
   });

@@ -25,12 +25,6 @@
   function clamp(v, a, b) { return v < a ? a : v > b ? b : v; }
   function rnd(a, b) { return a + Math.random() * (b - a); }
   J.rnd = rnd; J.clamp = clamp;
-
-  /* overall strength of the involuntary motion (scroll wobble, cursor shove, idle twitching,
-     click shockwaves). 1 = default, 0 = none, 2 = wild. Set `jiggle` in js/config.js. */
-  var cfgJ = (window.BRICKSLAYERS || {}).jiggle;
-  var INT = typeof cfgJ === 'number' && isFinite(cfgJ) ? clamp(cfgJ, 0, 2.5) : 1;
-  J.INT = INT;
   J.onFrame = function (fn) { J.frameFns.push(fn); };
 
   /* ---------- reduced motion: static rotations only ---------- */
@@ -55,7 +49,7 @@
     this.el = el;
     this.base = parseFloat(el.getAttribute('data-rot')) || 0;
     this.gain = el.hasAttribute('data-gain') ? parseFloat(el.getAttribute('data-gain')) : 1;
-    this.k = 0.085; this.c = 0.3;
+    this.k = 0.085; this.c = 0.12;
     this.x = this.y = this.vx = this.vy = 0;
     this.r = this.vr = 0;
     this.s = this.vs = 0;
@@ -78,10 +72,10 @@
     var g = this.gain;
 
     if (this.skewOnly) {
-      if (scrollD) this.vsk += scrollD * 0.012 * g * INT;
-      this.vsk += (-0.12 * this.sk - 0.22 * this.vsk) * dt;
+      if (scrollD) this.vsk += scrollD * 0.035 * g;
+      this.vsk += (-0.09 * this.sk - 0.10 * this.vsk) * dt;
       this.sk += this.vsk * dt;
-      this.sk = clamp(this.sk, -2.5, 2.5);
+      this.sk = clamp(this.sk, -5, 5);
       if (Math.abs(this.sk) + Math.abs(this.vsk) < 0.01) { this.sk = this.vsk = 0; this.asleep = true; this.writeRest(); }
       return;
     }
@@ -89,8 +83,8 @@
     var k = this.k, c = this.c;
     var ax, ay;
     var ar = -k * 1.2 * this.r - c * 1.1 * this.vr;
-    var as = -0.16 * this.s - 0.22 * this.vs;
-    var ask = -0.12 * this.sk - 0.22 * this.vsk;
+    var as = -0.14 * this.s - 0.11 * this.vs;
+    var ask = -0.09 * this.sk - 0.10 * this.vsk;
 
     if (this.dragging) {
       ax = (this.tx - this.x) * 0.3 - 0.24 * this.vx;
@@ -100,9 +94,9 @@
       ax = -k * this.x - c * this.vx;
       ay = -k * this.y - c * this.vy;
       if (scrollD) {
-        this.vy += scrollD * 0.05 * g * INT;
-        this.vr += scrollD * 0.006 * this.dir * g * INT;
-        this.vsk += scrollD * 0.008 * g * INT;
+        this.vy += scrollD * 0.15 * g;
+        this.vr += scrollD * 0.02 * this.dir * g;
+        this.vsk += scrollD * 0.03 * g;
       }
     }
 
@@ -111,13 +105,13 @@
       this.cx = rect.left + rect.width / 2 - this.x;
       this.cy = rect.top + rect.height / 2 - this.y;
       var dx = this.cx - ptr.x, dy = this.cy - ptr.y;
-      var R = 120, d2 = dx * dx + dy * dy;
+      var R = 160, d2 = dx * dx + dy * dy;
       if (d2 < R * R) {
-        var d = Math.sqrt(d2) || 1, f = (1 - d / R) * g * INT;
-        ax += dx / d * f * 0.9 + ptr.vx * 0.025 * f;
-        ay += dy / d * f * 0.9 + ptr.vy * 0.025 * f;
-        ar += dx / d * f * 0.35 + ptr.vx * 0.015 * f;
-        as += f * 0.008;
+        var d = Math.sqrt(d2) || 1, f = (1 - d / R) * g;
+        ax += dx / d * f * 2.1 + ptr.vx * 0.07 * f;
+        ay += dy / d * f * 2.1 + ptr.vy * 0.07 * f;
+        ar += dx / d * f * 1.1 + ptr.vx * 0.05 * f;
+        as += f * 0.02;
         this.asleep = false;
       }
     }
@@ -125,8 +119,8 @@
     this.vx += ax * dt; this.vy += ay * dt; this.vr += ar * dt; this.vs += as * dt; this.vsk += ask * dt;
     this.x += this.vx * dt; this.y += this.vy * dt; this.r += this.vr * dt; this.s += this.vs * dt; this.sk += this.vsk * dt;
 
-    this.sk = clamp(this.sk, -4, 4);
-    this.r = clamp(this.r, -25, 25);
+    this.sk = clamp(this.sk, -6, 6);
+    this.r = clamp(this.r, -35, 35);
     this.s = clamp(this.s, -0.4, 0.5);
 
     var e = Math.abs(this.x) + Math.abs(this.y) + Math.abs(this.vx) + Math.abs(this.vy) +
@@ -172,7 +166,7 @@
         el.addEventListener('pointerenter', function (e) {
           if (e.pointerType !== 'mouse' || j.dragging) return;
           var g = j.gain;
-          j.vs += 0.035 * g * INT; j.vr += rnd(-2, 2) * g * INT; j.vy -= rnd(0.5, 1.5) * g * INT; j.wake();
+          j.vs += 0.08 * g; j.vr += rnd(-4, 4) * g; j.vy -= rnd(1, 3) * g; j.wake();
         });
       }
       if (j.grab) {
@@ -302,7 +296,7 @@
   document.addEventListener('pointerdown', function (e) {
     if (e.pointerType === 'touch' && e.target.closest && e.target.closest('.nav-links,#pit-canvas')) return;
     if (e.target.closest && e.target.closest('.qform,.lb,.nav,#pit-canvas')) return;
-    if (INT) J.shock(e.clientX, e.clientY, 0.35 * INT, 220);
+    J.shock(e.clientX, e.clientY, 0.75, 260);
   }, { passive: true });
 
   /* ---------- main loop ---------- */
@@ -324,13 +318,12 @@
 
     nextTwitch -= ms;
     if (nextTwitch <= 0) {
-      nextTwitch = rnd(2600, 5600);
-      if (!INT) nextTwitch = 1e9;
+      nextTwitch = rnd(450, 1500);
       var pool = [];
       for (var q = 0; q < items.length; q++) if (items[q].visible && items[q].twitch && !items[q].dragging) pool.push(items[q]);
       if (pool.length) {
         var t = pool[(Math.random() * pool.length) | 0], g = t.gain;
-        g *= INT; t.vx += rnd(-1.2, 1.2) * g; t.vy += rnd(-1.4, 0.6) * g; t.vr += rnd(-2.2, 2.2) * g; t.vs += rnd(0.01, 0.05) * g; t.wake();
+        t.vx += rnd(-2.2, 2.2) * g; t.vy += rnd(-2.6, 1.2) * g; t.vr += rnd(-4, 4) * g; t.vs += rnd(0.02, 0.09) * g; t.wake();
       }
     }
 

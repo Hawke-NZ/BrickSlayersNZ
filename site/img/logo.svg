@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" role="img" aria-labelledby="t">
+  <title id="t">Brick Slayers NZ logo: an unwell brick with mismatched eyes over two crossed trowels</title>
+  <defs>
+    <g id="trowel">
+      <!-- handle -->
+      <rect x="-8" y="26" width="16" height="50" rx="7" fill="#120c0a"/>
+      <rect x="-8" y="40" width="16" height="4" fill="#ffe500"/>
+      <rect x="-8" y="52" width="16" height="4" fill="#ffe500"/>
+      <!-- neck -->
+      <path d="M0 4 L0 28" stroke="#120c0a" stroke-width="7" stroke-linecap="round"/>
+      <!-- blade -->
+      <path d="M0 -92 L19 -18 Q21 0 8 6 L-8 6 Q-21 0 -19 -18 Z" fill="#dcd8cc" stroke="#120c0a" stroke-width="6" stroke-linejoin="round"/>
+      <path d="M0 -70 L0 -6" stroke="#120c0a" stroke-width="3" stroke-linecap="round" opacity=".35"/>
+    </g>
+  </defs>
+
+  <!-- crossed trowels -->
+  <g transform="translate(100 108) rotate(56)"><use href="#trowel"/></g>
+  <g transform="translate(100 108) rotate(-56)"><use href="#trowel"/></g>
+
+  <!-- the brick -->
+  <g transform="translate(100 106) scale(.8) translate(-100 -104) rotate(-6 100 104)">
+    <rect x="34" y="62" width="132" height="86" rx="9" fill="#120c0a"/>
+    <rect x="38" y="66" width="124" height="80" rx="7" fill="#c23b22"/>
+    <!-- texture -->
+    <path d="M46 78 h18 M132 134 h22 M54 132 h10 M144 76 h8" stroke="#7a1c0e" stroke-width="3" stroke-linecap="round"/>
+    <circle cx="150" cy="88" r="2.2" fill="#7a1c0e"/><circle cx="52" cy="112" r="2" fill="#7a1c0e"/>
+    <!-- scar crack -->
+    <path d="M62 66 L70 84 L62 92 L72 106" fill="none" stroke="#120c0a" stroke-width="3.5" stroke-linejoin="round" stroke-linecap="round"/>
+    <!-- eyes: mismatched -->
+    <circle cx="82" cy="100" r="16" fill="#120c0a"/>
+    <circle cx="126" cy="97" r="10" fill="#120c0a"/>
+    <circle cx="86" cy="96" r="4.6" fill="#ffe500"/>
+    <circle cx="123" cy="99" r="3" fill="#ffe500"/>
+    <!-- brow -->
+    <path d="M62 80 L98 90" stroke="#120c0a" stroke-width="6" stroke-linecap="round"/>
+    <path d="M114 84 L140 80" stroke="#120c0a" stroke-width="5" stroke-linecap="round"/>
+    <!-- teeth -->
+    <path d="M60 122 L72 118 L80 128 L90 118 L100 130 L110 118 L120 129 L130 119 L142 124 L140 136 L62 137 Z" fill="#f0e6cf" stroke="#120c0a" stroke-width="4" stroke-linejoin="round"/>
+    <path d="M80 128 v9 M100 130 v7 M120 129 v8" stroke="#120c0a" stroke-width="3"/>
+  </g>
+</svg>

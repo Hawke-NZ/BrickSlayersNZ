@@ -130,14 +130,14 @@ mark{background:var(--hivis);color:var(--ink);padding:0 .18em;-webkit-box-decora
 .glitch-light::after{color:var(--hivis)}
 @keyframes gl1{
   0%,90%,100%{clip-path:inset(0 0 100% 0);transform:none}
-  91%{clip-path:inset(12% 0 62% 0);transform:translate(-3px,0)}
-  93%{clip-path:inset(58% 0 12% 0);transform:translate(3px,0)}
-  95%{clip-path:inset(30% 0 40% 0);transform:translate(-2px,0)}
+  91%{clip-path:inset(12% 0 62% 0);transform:translate(-6px,0)}
+  93%{clip-path:inset(58% 0 12% 0);transform:translate(5px,1px)}
+  95%{clip-path:inset(30% 0 40% 0);transform:translate(-3px,0)}
 }
 @keyframes gl2{
   0%,88%,100%{clip-path:inset(0 0 100% 0);transform:none}
-  89%{clip-path:inset(44% 0 30% 0);transform:translate(3px,0)}
-  92%{clip-path:inset(8% 0 76% 0);transform:translate(-3px,0)}
+  89%{clip-path:inset(44% 0 30% 0);transform:translate(6px,0)}
+  92%{clip-path:inset(8% 0 76% 0);transform:translate(-5px,-1px)}
 }
 @keyframes blink{50%{opacity:0}}
 
@@ -194,11 +194,11 @@ mark{background:var(--hivis);color:var(--ink);padding:0 .18em;-webkit-box-decora
 .w-c{left:40%;bottom:15%}
 
 .mascot-wrap{position:absolute;z-index:5;pointer-events:none;right:clamp(8px,2.5vw,44px);top:clamp(14px,2vw,34px);width:clamp(140px,25vw,360px)}
-.mascot-bob{animation:bob 6s ease-in-out infinite}
-@keyframes bob{50%{transform:translateY(-6px)}}
+.mascot-bob{animation:bob 4.4s ease-in-out infinite}
+@keyframes bob{50%{transform:translateY(-10px) rotate(1.5deg)}}
 .mascot{pointer-events:auto;display:block;width:100%;height:auto;cursor:grab;touch-action:pan-y;filter:drop-shadow(8px 8px 0 rgba(13,11,10,.9))}
 .note-kevin{position:absolute;right:8%;top:100%;margin:6px 0 0;font-size:clamp(14px,1.6vw,20px);line-height:1.1;color:var(--brick);transform:rotate(-4deg);pointer-events:none;text-align:right}
-.note-kevin .kev-arrow{position:absolute;right:22%;bottom:100%;margin-bottom:4px;width:60px;height:92px;overflow:visible}
+.note-kevin svg{position:absolute;right:100%;top:-26px;width:64px;height:50px;transform:scaleX(-1) rotate(8deg)}
 .hero-hint{position:absolute;z-index:3;left:120px;bottom:78px;text-align:left;font:400 18px var(--f-hand);color:var(--ink);opacity:.75;margin:0;pointer-events:none}
 
 /* ---------- marquees ---------- */
@@ -217,7 +217,7 @@ mark{background:var(--hivis);color:var(--ink);padding:0 .18em;-webkit-box-decora
 .classified{font-size:14px;background:var(--paper);border:2px dashed var(--ink);padding:12px 14px}
 .redact{background:var(--ink);color:transparent;cursor:help;padding:0 .25em;transition:background .15s,color .15s}
 .redact:hover,.redact:focus{background:var(--hivis);color:var(--ink);outline:none}
-.rules{position:relative;background:var(--paper);border:4px solid var(--ink);box-shadow:10px 10px 0 var(--ink);padding:36px 26px 74px;margin-top:20px}
+.rules{position:relative;background:var(--paper);border:4px solid var(--ink);box-shadow:10px 10px 0 var(--ink);padding:36px 26px 26px;margin-top:20px}
 .tape{position:absolute;top:-14px;width:92px;height:28px;background:rgba(255,229,0,.82);border:1px solid rgba(13,11,10,.25)}
 .tape-l{left:-22px;transform:rotate(-36deg)}
 .tape-r{right:-22px;transform:rotate(36deg)}
@@ -371,12 +371,12 @@ body.panic-on::before{content:'';position:fixed;inset:0;z-index:89;pointer-event
   .hero{padding-bottom:120px}
   .mascot-wrap{position:relative;right:auto;top:auto;width:min(58vw,260px);margin:26px 0 0 auto}
   .note-kevin{right:auto;left:-96px;top:auto;bottom:-26px;text-align:left}
-  .note-kevin .kev-arrow{right:auto;left:98%;bottom:100%;width:44px;height:68px;transform:scaleX(-1)}
+  .note-kevin svg{right:auto;left:100%;top:-46px;width:70px;height:56px;transform:scaleY(-1) rotate(-10deg)}
   .w-a,.w-b{display:none}
   .st-a{display:none}
-  .st-b{top:auto;bottom:70px;left:auto;right:14px}
+  .st-b{top:auto;bottom:108px;left:14px}
   .st-c{bottom:150px;right:10px}
-  .hero-hint{display:none}
+  .hero-hint{bottom:70px;left:0;right:0;text-align:center}
   .field-row{grid-template-columns:1fr}
   .panic{width:68px;height:68px;font-size:9px}
 }

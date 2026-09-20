@@ -30,11 +30,6 @@ window.BRICKSLAYERS = {
   // Used when no feed URL is set, or the feed is down and nothing is cached.
   localFeed: 'gallery.json',
 
-  // How much the page wobbles on its own (scroll wobble, cursor shove, idle
-  // twitching, click shockwaves). 1 = default. 0 = none. 2 = properly unhinged.
-  // Grabbing and flinging things always works either way.
-  jiggle: 1,
-
   // Optional: paste a Formspree / Web3Forms / similar endpoint here and the
   // quote form will POST there instead of opening the visitor's email app.
   formEndpoint: ''

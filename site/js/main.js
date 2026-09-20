@@ -107,8 +107,8 @@
         s.textContent = ch;
         s.style.setProperty('--s', rnd(0.9, 1.1).toFixed(2));
         s.style.setProperty('--y', rnd(-0.07, 0.07).toFixed(3) + 'em');
-        s.setAttribute('data-jiggle', ''); s.setAttribute('data-repel', ''); s.setAttribute('data-grab', '');
-        s.setAttribute('data-rot', rnd(-4, 4).toFixed(1));
+        s.setAttribute('data-jiggle', ''); s.setAttribute('data-repel', ''); s.setAttribute('data-grab', ''); s.setAttribute('data-twitch', '');
+        s.setAttribute('data-rot', rnd(-6, 6).toFixed(1));
         line.appendChild(s);
         J.register(s);
       });
@@ -120,7 +120,7 @@
     var el = $('#mutant');
     if (!el || RM) return;
     var phrases = [
-      'SOUTH AUCKLAND BRICKLAYERS. STRAIGHT WALLS ONLY.',
+      "SOUTH AUCKLAND'S MOST UNWELL BRICKLAYERS",
       'STRAIGHT LINES. CROOKED MINDS.',
       'MORTAR IN. WALLS OUT.',
       'THE PLUMB LINE DOES NOT LIE.',
@@ -145,7 +145,7 @@
       if (document.hidden) return;
       i = (i + 1) % phrases.length;
       scramble(phrases[i]);
-    }, 6500);
+    }, 3800);
   })();
 
   /* ---------- evidence board: red strings with real sag physics ---------- */
@@ -243,7 +243,7 @@
         if (seen && seen.has(el)) return;
         if (seen) seen.add(el);
         var delay = (parseInt(el.getAttribute('data-i'), 10) || 0) * 90;
-        setTimeout(function () { J.kick(el, { y: rnd(14, 24), x: rnd(-6, 6), r: rnd(-2, 2), s: -0.04 }); }, delay);
+        setTimeout(function () { J.kick(el, { y: rnd(50, 90), x: rnd(-30, 30), r: rnd(-8, 8), s: -0.12 }); }, delay);
       });
     }, { rootMargin: '0px 0px 160px 0px' });
     $$('.card').forEach(function (c, i) { c.setAttribute('data-i', i % 3); enter.observe(c); });

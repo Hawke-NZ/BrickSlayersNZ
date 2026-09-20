@@ -11,19 +11,9 @@ Double-click `index.html`. Everything works except the live Instagram feed, beca
 Upload the whole folder (not just index.html) to any static host. Easiest free options:
 
 - **Cloudflare Pages** or **Netlify**: create a free account, choose "upload / drag and drop your site folder", done. Both give you a free web address and let you connect a custom domain later.
-- **GitHub Pages**: see the section below. A GitHub repository page is not the website. The site only exists once Pages is switched on.
-- Any normal web host (cPanel / FTP): upload the folder contents so `index.html` sits at the top level.
+- **GitHub Pages**, or any normal web host (cPanel / FTP): upload the folder contents so `index.html` sits at the top level.
 
 The `_headers` file is picked up automatically by Cloudflare Pages and Netlify (basic security headers). Other hosts ignore it, which is fine.
-
-## GitHub Pages (and fixing a 404)
-
-1. Put the *contents* of this folder in the repository so `index.html` is at the top level of the repo, not inside a subfolder.
-2. The repository must be **Public** (free GitHub accounts can't publish Pages from private repos). Settings > General > scroll to the bottom > Change visibility.
-3. Settings > Pages > "Build and deployment": Source = "Deploy from a branch", Branch = `main`, folder = `/ (root)`, then Save.
-4. Wait a minute or two, then open the address shown at the top of that Pages screen. It looks like `https://YOURNAME.github.io/REPONAME/`. That address is the website, and it works on any phone.
-
-If your computer shows the site but your phone shows a 404, the usual causes are: you are looking at the private github.com repo page while signed in (GitHub shows a 404 to anyone signed out); Pages hasn't been switched on; or `index.html` is inside a subfolder so the address needs an extra folder name on the end. The site uses relative links only, so it works fine under `/REPONAME/`. A blank `.nojekyll` file is included so GitHub doesn't process the files.
 
 ## The one file you edit: `js/config.js`
 
@@ -35,7 +25,6 @@ If your computer shows the site but your phone shows a 404, the usual causes are
 | `feed.url` | The Instagram feed address (see below). |
 | `feed.maxPosts` | How many posts to show (default 12). |
 | `feed.refreshMinutes` | How often an open page re-checks for new posts. |
-| `jiggle` | How much the page wobbles by itself (scroll wobble, cursor shove, idle twitching, click shockwaves). `1` is the default, `0` turns it off, `2` is properly unhinged. Grabbing and flinging things always works. |
 | `formEndpoint` | Optional. See "Quote form" below. |
 
 ## Auto-updating Instagram gallery
