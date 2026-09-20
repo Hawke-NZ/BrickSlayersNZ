@@ -120,7 +120,7 @@
     var el = $('#mutant');
     if (!el || RM) return;
     var phrases = [
-      "SOUTH AUCKLAND'S MOST UNWELL BRICKLAYERS",
+      'SOUTH AUCKLAND BRICKLAYERS. STRAIGHT WALLS ONLY.',
       'STRAIGHT LINES. CROOKED MINDS.',
       'MORTAR IN. WALLS OUT.',
       'THE PLUMB LINE DOES NOT LIE.',
